@@ -1,22 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/common/rounded_small_button.dart';
+import 'package:twitter_clone/common/common.dart';
 import 'package:twitter_clone/constants/constants.dart';
-import 'package:twitter_clone/features/auth/view/signup_view.dart';
+import 'package:twitter_clone/features/auth/view/login_view.dart';
 import 'package:twitter_clone/features/auth/widget/auth_field.dart';
-import 'package:twitter_clone/theme/palette.dart';
+import 'package:twitter_clone/theme/theme.dart';
 
-class LoginView extends StatefulWidget {
+class SignUpView extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const LoginView(),
+        builder: (context) => const SignUpView(),
       );
-  const LoginView({super.key});
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   final appbar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -59,17 +59,17 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(
-                    text: "Dont't have an account?",
+                    text: "Already have an account?",
                     children: [
                       TextSpan(
-                        text: ' Sign Up',
+                        text: ' Login',
                         style: const TextStyle(
                           color: Palette.blueColor,
                           // fontSize: 16,
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                             Navigator.push(context, SignUpView.route());
+                            Navigator.push(context, LoginView.route());
                           },
                       ),
                     ],
@@ -81,14 +81,5 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
-  }
-}
-
-class ReUsableAppBar extends StatelessWidget {
-  const ReUsableAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar();
   }
 }
