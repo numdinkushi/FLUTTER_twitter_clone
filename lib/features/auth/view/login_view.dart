@@ -1,11 +1,15 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:twitter_clone/common/rounded_small_button.dart';
-import 'package:twitter_clone/constants/ui_constants.dart';
+import 'package:twitter_clone/constants/constants.dart';
+import 'package:twitter_clone/features/auth/view/signup_view.dart';
 import 'package:twitter_clone/features/auth/widget/auth_field.dart';
-import 'package:twitter_clone/theme/pallete.dart';
-// import 'package:twitter_clone/features/auth/widget/auth_field.dart';
+import 'package:twitter_clone/theme/palette.dart';
 
 class LoginView extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const LoginView(),
+      );
   const LoginView({super.key});
 
   @override
@@ -54,12 +58,20 @@ class _LoginViewState extends State<LoginView> {
                     )),
                 const SizedBox(height: 30),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: "Dont't have an account?",
                     children: [
                       TextSpan(
-                          text: ' Sign Up',
-                          style: TextStyle(color: Pallete.blueColor)),
+                        text: ' Sign Up',
+                        style: const TextStyle(
+                          color: Palette.blueColor,
+                          // fontSize: 16,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                             Navigator.push(context, SignUpView.route());
+                          },
+                      ),
                     ],
                   ),
                 )
