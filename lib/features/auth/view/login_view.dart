@@ -81,6 +81,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                 color: Palette.blueColor,
                                 // fontSize: 16,
                               ),
+                              
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.push(context, SignUpView.route());
