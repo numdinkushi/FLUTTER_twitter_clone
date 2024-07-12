@@ -1,3 +1,4 @@
+import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/apis/auth_api.dart';
@@ -15,6 +16,13 @@ class AuthController extends StateNotifier<bool> {
   AuthController({required AuthAPI authAPI})
       : _authAPI = authAPI,
         super(false);
+
+  final currentUserAccountProvider = FutureProvider((ref) {
+    final authController = ref.watch(authControllerProvider.notifier);
+    return authController.currentUser();
+  });
+
+  Future<User?> currentUser() => _authAPI.currentUserAccount();
 
   void signUp({
     required String email,
