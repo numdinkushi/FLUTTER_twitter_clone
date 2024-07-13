@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/apis/auth_api.dart';
+import 'package:twitter_clone/apis/user_api.dart';
 import 'package:twitter_clone/common/common.dart';
 import 'package:twitter_clone/common/loading_page.dart';
 import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
@@ -18,7 +19,10 @@ void main() {
 
 final authControllerProvider =
     StateNotifierProvider<AuthController, bool>((ref) {
-  return AuthController(authAPI: ref.watch(authAPIProvider));
+  return AuthController(
+    authAPI: ref.watch(authAPIProvider),
+    userAPI: ref.watch(userAPIProvider),
+  );
 });
 
 final currentUserAccountProvider = FutureProvider((ref) {
@@ -33,7 +37,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Twitter Clone',
         theme: AppTheme.theme,
         home: ref.watch(currentUserAccountProvider).when(
             data: (user) {
